@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta charset="utf-8"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <script> localStorage.clear()</script>
+
+    <title>Findings</title>
+
+
+</head>
+
+<body onload="getAllResources()">
+
+
+<section id="section_contents">
+    <div class="row" style="margin-left: 0px; margin-right:0px;">
+        <div id="welcome_content" class="content show">
+            <h1>Welcome</h1>
+            <hr>
+            <button type="submit" id="btn_nav_to_table" onclick="navigateToTable()">Tables</button>
+            <hr>
+            <button type="submit" id="btn_nav_to_graphs" onclick="navigateToGraphs()"/>
+            Graphs</button>
+            <hr>
+            <button type="submit" id="btn_nav_to_topthree" onclick="navigateToTopThree()"/>
+            Top Three</button>
+        </div>
+        <div id="table_content" class="content hide">
+            <h1>Table</h1>
+            <div id="fullTable"></div>
+        </div>
+        <div id="graphs_content" class="content hide">
+            <h1>Graph</h1>
+            <h2>All Classifiers</h2>
+            <div id="AllClassifiersGraphs">
+            </div>
+
+            <h2>By Classifiers</h2>
+            <div id="GraphByClassifiers">
+            <label for="setClassifier">Choose classifiers</label><select id = "setClassifier" multiple = "multiple"></select>
+                <button id="sendClassifiers" onclick="getClassifiersGraphs()">Get Graphs</button>
+            </div>
+        </div>
+
+        <div id="topThree_content" class="content hide">
+            <h1>Top Three</h1>
+            <div id="TopThreeGraphs">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+
+</section>
+
+<script src="https://gmousse.github.io/dataframe-js/dist/dataframe.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="app.js"></script>
+<script src="navigation.js"></script>
+</body>
+
+</html>
