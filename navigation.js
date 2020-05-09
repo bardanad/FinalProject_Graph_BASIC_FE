@@ -48,7 +48,10 @@ function navigateToTable() {
     $(".active").removeClass("active");
     $("#table_nav").addClass("active");
     $(".content.show").attr("class", "content hide");
-    let con = $("#table_content");
+    let con = $("#welcome_content");
+    con.removeClass("hide");
+    con.addClass("show");
+    con = $("#table_content");
     con.removeClass("hide");
     con.addClass("show");
 }
@@ -57,6 +60,9 @@ function navigateToGraphs() {
     $(".active").removeClass("active");
     $("#login_nav").addClass("active");
     $(".content.show").attr("class", "content hide");
+    let con1 = $("#welcome_content");
+    con1.removeClass("hide");
+    con1.addClass("show");
     let con = $("#graphs_content");
     con.removeClass("hide");
     con.addClass("show");
@@ -66,6 +72,9 @@ function navigateToTopThree() {
     $(".active").removeClass("active");
     $("#login_nav").addClass("active");
     $(".content.show").attr("class", "content hide");
+    let con1 = $("#welcome_content");
+    con1.removeClass("hide");
+    con1.addClass("show");
     let con = $("#topThree_content");
     con.removeClass("hide");
     con.addClass("show");
