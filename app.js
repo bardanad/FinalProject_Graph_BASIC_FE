@@ -1,11 +1,3 @@
-// import DataFrame from 'dataframe-js';
-// import DataFrame, { Row } from 'dataframe-js';
-// // es5
-// var DataFrame = require('dataframe-js').DataFrame;
-// // Browser
-// var DataFrame = dfjs.DataFrame;
-
-
 function getAllResources() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'http://localhost:8089/tables/getFullTable', false);
@@ -87,10 +79,4 @@ function getClassifiersGraphs() {
         parentElement.appendChild(newPlot);
     }
 }
-
-// for (var key in jsonObj) {
-//     newPlot = document.createElement(key);
-//     Plotly.newPlot(newPlot, JSON.parse(jsonObj[key]));
-//     parentElement.appendChild(newPlot);
-// }
 
