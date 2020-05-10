@@ -5,19 +5,15 @@
 // // Browser
 // var DataFrame = dfjs.DataFrame;
 
-function httpGetFullTable() {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", 'http://localhost:8089/graphs/get', false); // false for synchronous request
-    xmlHttp.send(null);
-    return xmlHttp.responseText;
-}
-
 
 function getAllResources() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'http://localhost:8089/tables/getFullTable', false);
     xmlHttp.send(null);
-    document.getElementById("table_content").innerHTML = xmlHttp.responseText
+    newPlot = document.createElement("table");
+    Plotly.newPlot(newPlot, JSON.parse(JSON.parse(xmlHttp.responseText)));
+    parentElement = document.getElementById("fullTable");
+    parentElement.appendChild(newPlot);
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'http://localhost:8089/graphs/getAllClassifiersGraphs', false);
@@ -32,7 +28,7 @@ function getAllResources() {
     }
     EvaluateByRuntimeGraphs = jsonObj['Evaluated by Runtime'];
     for (var key in EvaluateByRuntimeGraphs) {
-        newPlot = document.createElement(key, {height : 400, width : 400});
+        newPlot = document.createElement(key, {height: 400, width: 400});
         Plotly.newPlot(newPlot, JSON.parse(jsonObj['Evaluated by Runtime'][key]));
         parentElement.appendChild(newPlot)
     }
@@ -61,7 +57,7 @@ function getAllResources() {
 
 }
 
-function getClassifiersGraphs(){
+function getClassifiersGraphs() {
     const parentElement = document.getElementById("classifiersGraphs");
     while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.lastChild);
@@ -71,7 +67,7 @@ function getClassifiersGraphs(){
     var options = select && select.options;
     var opt;
 
-    for (var i=0, iLen=options.length; i<iLen; i++) {
+    for (var i = 0, iLen = options.length; i < iLen; i++) {
         opt = options[i];
 
         if (opt.selected) {
@@ -80,7 +76,7 @@ function getClassifiersGraphs(){
     }
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'http://localhost:8089/graphs/getSpecificClassifierGraphs', false);
-    reqBody = {"Classifiers" : result}
+    reqBody = {"Classifiers": result}
     xmlHttp.setRequestHeader("Classifiers", JSON.stringify(result));
     xmlHttp.send(reqBody);
     jsonObj = JSON.parse(JSON.parse(xmlHttp.responseText));
