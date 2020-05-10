@@ -62,6 +62,10 @@ function getAllResources() {
 }
 
 function getClassifiersGraphs(){
+    const parentElement = document.getElementById("classifiersGraphs");
+    while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.lastChild);
+    }
     var select = document.getElementById("setClassifier");
     var result = [];
     var options = select && select.options;
@@ -80,11 +84,17 @@ function getClassifiersGraphs(){
     xmlHttp.setRequestHeader("Classifiers", JSON.stringify(result));
     xmlHttp.send(reqBody);
     jsonObj = JSON.parse(JSON.parse(xmlHttp.responseText));
-    parentElement = document.getElementById("GraphByClassifiers");
     for (var key in jsonObj) {
-        newPlot = document.createElement(key);
+        elementKey = key.replace(" ", "_");
+        newPlot = document.createElement(elementKey);
         Plotly.newPlot(newPlot, JSON.parse(jsonObj[key]));
         parentElement.appendChild(newPlot);
     }
 }
+
+// for (var key in jsonObj) {
+//     newPlot = document.createElement(key);
+//     Plotly.newPlot(newPlot, JSON.parse(jsonObj[key]));
+//     parentElement.appendChild(newPlot);
+// }
 
