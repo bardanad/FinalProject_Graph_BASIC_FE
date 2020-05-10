@@ -1,3 +1,5 @@
+
+
 function getAllResources() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'http://localhost:8089/tables/getFullTable', false);
@@ -35,6 +37,18 @@ function getAllResources() {
         Plotly.newPlot(newPlot, JSON.parse(jsonObj[key]));
         parentElement.appendChild(newPlot);
     }
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", 'http://localhost:8089/graphs/getTopThreeConfigurations', false);
+    xmlHttp.send(null);
+    jsonObj = JSON.parse(JSON.parse(xmlHttp.responseText));
+    parentElement = document.getElementById("TopThreeGraphs");
+    for (var key in jsonObj) {
+        var image = new Image();
+        image.src = 'data:image/png;base64,' + JSON.parse(jsonObj[key]).img;
+        parentElement.appendChild(image);
+    }
+
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'http://localhost:8089/graphs/getClassifersOptions', false);
